@@ -28,6 +28,32 @@ app.get('/', (req, res) => {
 });
 
 // Add your code here
+app.get('/welcome', (req, res) => {
+  res.status(200).send('<h1>Welcome to my Express.js application!</h1>');
+});
+
+app.get('/redirect', (req, res) => {
+  res.redirect(302, '/redirected');
+});
+
+app.get('/redirected', (req, res) => {
+  res.status(200).send('<h1>You have been redirected successfully.</h1>');
+});
+
+app.get('/cache', (req, res) => {
+  res.set('Cache-Control', 'max-age=86400');
+  res.status(200).send('<h1>This resource was cached.</h1>');
+});
+
+app.get('/cookie', (req, res) => {
+  res.cookie('hello', 'world');
+  res.type('text/plain');
+  res.send('cookies... yummm');
+});
+
+app.use((req, res) => {
+  res.status(404).send('<h1>404 - Page Not Found</h1>');
+});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
