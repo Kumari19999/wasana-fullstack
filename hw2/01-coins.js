@@ -1,6 +1,10 @@
 /** Exercise 01 - Coins **/
 
 function calculateChange(amount) {
+
+    if (amount < 0) {
+    return "Error: the number cannot be negative";
+    }
   if (amount > 100) {
     return "Error: the number is too large";
   }
@@ -21,7 +25,29 @@ function calculateChange(amount) {
 
   let pennies = cents;
 
-  return `${dollars} dollars, ${quarters} quarters, ${dimes} dimes, ${nickels} nickels, ${pennies} pennies`;
+  const result = [];
+
+if (dollars > 0) {
+  result.push(`${dollars} dollar${dollars === 1 ? "" : "s"}`);
+}
+
+if (quarters > 0) {
+  result.push(`${quarters} quarter${quarters === 1 ? "" : "s"}`);
+}
+
+if (dimes > 0) {
+  result.push(`${dimes} dime${dimes === 1 ? "" : "s"}`);
+}
+
+if (nickels > 0) {
+  result.push(`${nickels} nickel${nickels === 1 ? "" : "s"}`);
+}
+
+if (pennies > 0) {
+  result.push(`${pennies} penn${pennies === 1 ? "y" : "ies"}`);
+}
+
+return result.join(", ");
 }
 
 // Sample test cases
@@ -40,3 +66,4 @@ console.log(calculateChange(0.99));
 console.log(calculateChange(100.00));
 console.log(calculateChange(0.01));
 console.log(calculateChange(0));
+console.log(calculateChange(-1));
