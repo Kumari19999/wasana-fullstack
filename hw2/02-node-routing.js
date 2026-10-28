@@ -21,9 +21,36 @@ const server = http.createServer((req, res) => {
     'other',
   ];
 
+  if (req.url === '/welcome') {
   res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('Node Routing Exercise');
+  res.end('<h1>Welcome to my Node.js application!</h1>');
+
+} else if (req.url === '/redirect') {
+  res.writeHead(302, { Location: '/redirected' });
   res.end();
+
+} else if (req.url === '/redirected') {
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.end('<h1>You have been redirected successfully.</h1>');
+
+} else if (req.url === '/cache') {
+  res.writeHead(200, {
+    'Content-Type': 'text/html',
+    'Cache-Control': 'max-age=86400'
+  });
+  res.end('<h1>This resource was cached.</h1>');
+
+} else if (req.url === '/cookie') {
+  res.writeHead(200, {
+    'Content-Type': 'text/plain',
+    'Set-Cookie': 'hello=world'
+  });
+  res.end('cookies... yummm');
+
+} else {
+  res.writeHead(404, { 'Content-Type': 'text/html' });
+  res.end('<h1>404 - Page Not Found</h1>');
+}
 });
 
 server.listen(port, () => {
