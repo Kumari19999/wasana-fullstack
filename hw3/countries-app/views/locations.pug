@@ -1,0 +1,15 @@
+
+extends layout
+
+block content
+  h1 Rick and Morty Locations
+
+  each group in groupedLocations
+    hr
+    h2= group.type
+    p Total locations: #{group.count}
+
+    h3 Location names:
+    ul
+      each name in group.names
+        li= name
