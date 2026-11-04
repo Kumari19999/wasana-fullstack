@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 Rick and Morty Characters
+
+  each character in characters
+    h3= character.name
+    p Species: #{character.species}
+    p Status: #{character.status}
+    img(src=character.image, width="150")
+    hr

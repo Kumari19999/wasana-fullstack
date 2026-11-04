@@ -1,0 +1,15 @@
+
+extends layout
+
+block content
+  h1 Rick and Morty Species
+
+  each group in groupedSpecies
+    hr
+    h2= group.species
+    p Total characters: #{group.count}
+
+    h3 Character names:
+    ul
+      each name in group.names
+        li= name
